@@ -4,12 +4,11 @@ import { Job } from 'bullmq';
 
 @Processor(TEST_QUEUE)
 export class TestProcessor extends WorkerHost {
-    async process(job: Job) {
-        console.log('🧪 Test job received:', job.data);
+     async process(job: Job) {
+    console.log(
+      `➡️ Job ${job.id}, attempt ${job.attemptsMade + 1}`,
+    );
 
-        await new Promise(res => setTimeout(res, 60000));
-
-        console.log('✅ Test job completed:', job.data.name);
-
-    }
+    throw new Error('Force fail');
+  }
 }

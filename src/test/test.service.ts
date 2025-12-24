@@ -18,6 +18,13 @@ export class TestService {
         message: 'Hello BullMQ',
         time: new Date(),
       },
+      {
+        attempts: 3,
+        backoff: {
+          type: 'exponential',
+          delay: 5000,
+        },
+      }
     //   {
     //     removeOnComplete: true,
     //   },
